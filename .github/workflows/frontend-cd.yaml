@@ -121,9 +121,10 @@ jobs:
 
       - name: Install kustomize
         run: |
-          curl -sLo kustomize https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize/v5.4.2/kustomize_v5.4.2_linux_amd64
-          chmod +x kustomize
+          curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh" | bash
           sudo mv kustomize /usr/local/bin/kustomize
+          which kustomize
+          kustomize version
 
       - name: Set frontend image
         run: kustomize edit set image frontend=${{ env.ECR_REPOSITORY }}:${{ needs.build.outputs.image_tag }}
