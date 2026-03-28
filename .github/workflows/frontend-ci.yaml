@@ -80,6 +80,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Run tests
+        run: CI=true npm test
+
       - name: Build frontend Docker image
         run: |
           docker build \
